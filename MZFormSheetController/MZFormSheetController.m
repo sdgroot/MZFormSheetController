@@ -679,7 +679,7 @@ static BOOL MZFromSheetControllerIsViewControllerBasedStatusBarAppearance(void) 
 		if (screenRect.size.height > formSheetRect.size.height) {
 			switch (self.movementWhenKeyboardAppears) {
 				case MZFormSheetWhenKeyboardAppearsCenterVertically:
-					formSheetRect.origin.y = ([MZFormSheetController statusBarHeight] + screenRect.size.height - formSheetRect.size.height)/2 - screenRect.origin.y;
+					formSheetRect.origin.y = floorf(([MZFormSheetController statusBarHeight] + screenRect.size.height - formSheetRect.size.height)/2 - screenRect.origin.y); // FIXME SDG: HACK: floorf() toegevoegd om subpixel alignment te voorkomen
 					break;
 				case MZFormSheetWhenKeyboardAppearsMoveToTop:
 					formSheetRect.origin.y = self.top;
